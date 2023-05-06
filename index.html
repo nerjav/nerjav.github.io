@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calculadora de notas</title>
+	<!-- Archivos CSS de Materialize -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+	<!-- Archivos JavaScript de Materialize -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+	<script>
+		function calcular() {
+			var pp = document.getElementById("pp").value;
+			var pt = document.getElementById("pt").value;
+			pp = parseFloat(pp);
+			pt = parseFloat(pt);
+			var p = (pp + pt) / 140;
+			var tp = p * 60;
+			var tf = 0;
+			if (document.getElementById("pf").value) {
+				var pf = parseFloat(document.getElementById("pf").value);
+				var f = pf / 30;
+				tf = f * 40;
+			}
+			var total = tp + tf;
+			var calificacion = "";
+			if (total >= 91) {
+				calificacion = "5";
+			} else if (total >= 80) {
+				calificacion = "4";
+			} else if (total >= 70) {
+				calificacion = "3";
+			} else if (total >= 60) {
+				calificacion = "2";
+			} else {
+				calificacion = "1";
+			}
+			document.getElementById("p").innerHTML = "Proceso: " + p.toFixed(2);
+			document.getElementById("tp").innerHTML = "Total Proceso: " + tp.toFixed(2);
+			document.getElementById("tf").innerHTML = "Total Final: " + tf.toFixed(2);
+			document.getElementById("total").innerHTML = "Total acumulado: " + total.toFixed(2);
+			document.getElementById("calificacion").innerHTML = "Calificación final: " + calificacion;
+		}
+	</script>
+</head>
+<body class="container">
+	<h1>Calculadora de notas</h1>
+	<form class="row">
+		<div class="col s12 m6">
+			<label for="pp">Puntaje de parcial:</label>
+			<input type="number" id="pp" name="pp" required>
+
+			<label for="pt">Puntaje Trabajo Práctico:</label>
+			<input type="number" id="pt" name="pt" required>
+
+			<label for="pf">Puntaje Final:</label>
+			<input type="number" id="pf" name="pf">
+		</div>
+
+		<div class="col s12 m6">
+			<div class="card">
+				<div class="card-content">
+					<div id="p"></div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-content">
+					<div id="tp"></div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-content">
+					<div id="tf"></div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-content">
+					<div id="total"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col s12">
+			<button class="btn" type="button" onclick="calcular()">Calcular</button>
+		</div>
+	</form>
+
+	<div id="calificacion" class="card-panel red lighten-4 white-text"></div>
+
+<style>
+
+.red.lighten-4 {
+    background-color: #26a69a !important;
+    color: #fff;
+}
+
+
+</style>
+</body>
+</html>
